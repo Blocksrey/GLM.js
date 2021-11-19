@@ -32,7 +32,79 @@ Mat4.identity = new Mat4(
 	0, 0, 0, 1
 )
 
-Mat4.prototype.multiply = b => {
+Mat4.prototype.dump = function() {
+	return [
+		this.xx,
+		this.yx,
+		this.zx,
+		this.wx,
+
+		this.xy,
+		this.yy,
+		this.zy,
+		this.wy,
+
+		this.xz,
+		this.yz,
+		this.zz,
+		this.wz,
+
+		this.xw,
+		this.yw,
+		this.zw,
+		this.ww
+	]
+}
+
+Mat4.prototype.dumpT = function() {
+	return [
+		this.xx,
+		this.xy,
+		this.xz,
+		this.xw,
+
+		this.yx,
+		this.yy,
+		this.yz,
+		this.yw,
+
+		this.zx,
+		this.zy,
+		this.zz,
+		this.zw,
+
+		this.wx,
+		this.wy,
+		this.wz,
+		this.ww
+	]
+}
+
+Mat4.prototype.add = function(b) {
+	return new Mat4(
+		this.xx += b.xx,
+		this.yx += b.yx,
+		this.zx += b.zx,
+		this.wx += b.wx,
+
+		this.xy += b.xy,
+		this.yy += b.yy,
+		this.zy += b.zy,
+		this.wy += b.wy,
+
+		this.xz += b.xz,
+		this.yz += b.yz,
+		this.zz += b.zz,
+		this.wz += b.wz,
+
+		this.xw += b.xw,
+		this.yw += b.yw,
+		this.zw += b.zw,
+		this.ww += b.ww
+	)
+}
+
+Mat4.prototype.mul = function(b) {
 	return new Mat4(
 		this.wx*b.xw + this.xx*b.xx + this.yx*b.xy + this.zx*b.xz,
 		this.wx*b.yw + this.xx*b.yx + this.yx*b.yy + this.zx*b.yz,
@@ -56,7 +128,7 @@ Mat4.prototype.multiply = b => {
 	)
 }
 
-Mat4.prototype.trans = () => {
+Mat4.prototype.trans = function() {
 	return new Mat4(
 		this.xx, this.xy, this.xz, this.xw,
 		this.yx, this.yy, this.yz, this.yw,
@@ -65,7 +137,7 @@ Mat4.prototype.trans = () => {
 	)
 }
 
-Mat4.translation = (x, y, z) => {
+Mat4.translation = function(x, y, z) {
 	return new Mat4(
 		1, 0, 0, x,
 		0, 1, 0, y,
@@ -74,7 +146,7 @@ Mat4.translation = (x, y, z) => {
 	)
 }
 
-Mat4.scale = (x, y, z) => {
+Mat4.scale = function(x, y, z) {
 	return new Mat4(
 		x, 0, 0, 0,
 		0, y, 0, 0,
@@ -83,7 +155,10 @@ Mat4.scale = (x, y, z) => {
 	)
 }
 
-Mat4.rotate_x = t => {
+let cos = Math.cos
+let sin = Math.sin
+
+Mat4.rotate_x = function(t) {
 	let c = cos(t)
 	let s = sin(t)
 
@@ -95,7 +170,7 @@ Mat4.rotate_x = t => {
 	)
 }
 
-Mat4.rotate_y = t => {
+Mat4.rotate_y = function(t) {
 	let c = cos(t)
 	let s = sin(t)
 
@@ -107,7 +182,7 @@ Mat4.rotate_y = t => {
 	)
 }
 
-Mat4.rotate_z = t => {
+Mat4.rotate_z = function(t) {
 	let c = cos(t)
 	let s = sin(t)
 
@@ -119,7 +194,7 @@ Mat4.rotate_z = t => {
 	)
 }
 
-Mat4.perspective = m => {
+Mat4.perspective = function() {
 	let f = 100
 	let n = 1
 

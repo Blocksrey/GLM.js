@@ -90,7 +90,7 @@ Vec3.prototype.sub = b => {
 
 Vec3.prototype.mul = b => {
 	let atype = type(this)
-	if (atype == "number") {
+	if (atype == 'number') {
 		return new Vec3(a*b.x, a*b.y, a*b.z)
 	}
 	else {
@@ -111,7 +111,7 @@ Vec3.prototype.unm = () => {
 }
 
 Vec3.prototype.toString = () => {
-	return "Vec3(" + this.x + ", " + this.y + ", " + this.z + ")"
+	return 'Vec3(' + this.x + ', ' + this.y + ', ' + this.z + ')'
 }
 
 export {Vec3}

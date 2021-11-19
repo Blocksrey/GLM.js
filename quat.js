@@ -18,11 +18,13 @@ let tau = 6.28318530718
 Quat.identity = new Quat(0, 0, 0, 1)
 
 Quat.prototype.inv = () => {
-	return new Quat(-this.x, -this.y, -this.z, this.w)
+	this.x = -this.x
+	this,y = -this.y
+	this,z = -this.z
 }
 
-Quat.prototype.slerp = (b, n) => {
-	let ax, ay, az, aw = this.dump()
+Quat.slerp = (a, b, n) => {
+	let ax, ay, az, aw = a.dump()
 	let bx, by, bz, bw = b.dump()
 
 	if (ax*bx + ay*by + az*bz + aw*bw < 0) {
@@ -143,7 +145,7 @@ Quat.prototype.pow = n => {
 }
 
 Quat.prototype.toString = () => {
-	return "Quat(" + this.w + ", " + this.x + ", " + this.y + ", " + this.z + ")"
+	return 'Quat(' + this.w + ', ' + this.x + ', ' + this.y + ', ' + this.z + ')'
 }
 
 export {Quat}
