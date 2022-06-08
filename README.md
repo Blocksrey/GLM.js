@@ -1,2 +1,2 @@
-# GLM.js
-GLM.js > GLM
+# LinearAlgebra.js
+A collection of classes for doing stuff
